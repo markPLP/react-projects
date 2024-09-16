@@ -2,6 +2,7 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const SingleQuestion = ({ id, title, info, activeID, handleClick }) => {
   // check if variable is truthy or falsy
+  // if falsy don't display {info}
   const isActive = id === activeID;
 
   return (
