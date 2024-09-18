@@ -1,11 +1,10 @@
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import { list } from './data';
 import { FaQuoteRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 
-const SlickSlider = () => {
+const SlickSlider = ({ list }) => {
   const settings = {
     dots: true,
     infinite: true,
