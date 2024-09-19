@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import people from './data';
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 const App = () => {
   const [index, setIndex] = useState(0);
@@ -20,36 +21,44 @@ const App = () => {
   };
 
   const handleRandom = () => {
-    let newIndex = Math.floor(Math.random() * people.length) % people.length;
-
-    if (newIndex === index) {
-      newIndex = index + 1;
+    let randomNumber = Math.floor(Math.random() * people.length);
+    if (randomNumber === index) {
+      randomNumber = index + 1;
     }
-    console.log(newIndex);
 
+    const newIndex = randomNumber % people.length;
     setIndex(newIndex);
   };
+
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      handleRandom();
+    }, 2000);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [index]);
   return (
     <main>
-      <article className="review">
-        <div className="img-container">
-          <img src={image} alt={name} className="person-img" />
-          <span className="quote-icon">
+      <article className='review'>
+        <div className='img-container'>
+          <img src={image} alt={name} className='person-img' />
+          <span className='quote-icon'>
             <FaQuoteRight />
           </span>
         </div>
-        <h4 className="author">{name}</h4>
-        <p className="job">{job}</p>
-        <p className="info">{text}</p>
-        <div className="btn-container">
-          <button className="prev-btn" onClick={handlePrev}>
+        <h4 className='author'>{name}</h4>
+        <p className='job'>{job}</p>
+        <p className='info'>{text}</p>
+        <div className='btn-container'>
+          <button className='prev-btn' onClick={handlePrev}>
             <FaChevronLeft />
           </button>
-          <button className="next-btn" onClick={handleNext}>
+          <button className='next-btn' onClick={handleNext}>
             <FaChevronRight />
           </button>
         </div>
-        <button className="btn btn-hipster" onClick={handleRandom}>
+        <button className='btn btn-hipster' onClick={handleRandom}>
           Random Review
         </button>
       </article>
