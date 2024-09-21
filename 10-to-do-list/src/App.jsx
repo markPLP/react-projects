@@ -2,27 +2,50 @@ import { useState } from 'react';
 import Form from './Form';
 import ItemList from './ItemList';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { nanoid } from 'nanoid';
 const App = () => {
   const [list, setList] = useState([]);
+
   const addList = (item) => {
-    const newList = [...list, item];
-    setList(newList);
+    const newList = {
+      name: item,
+      completed: false,
+      id: nanoid(),
+    };
+    const newLists = [...list, newList];
+    setList(newLists);
     toast.success('Success, New Item Added.');
   };
 
-  const handleDelete = (listItem) => {
-    const deletedItem = list.filter((itemDeleted) => itemDeleted !== listItem);
+  const handleDelete = (id) => {
+    const deletedItem = list.filter((itemDeleted) => itemDeleted.id !== id);
     console.log(deletedItem);
     setList(deletedItem);
     toast.success('Item Deleted.');
+  };
+
+  const handleCheck = (id) => {
+    const newItems = list.map((item) => {
+      if (item.id === id) {
+        const newItem = { ...item, completed: !item.completed };
+        return newItem;
+      } else {
+        return item;
+      }
+    });
+    setList(newItems);
   };
 
   return (
     <section className='section-center'>
       <ToastContainer position='top-center' />
       <Form addList={addList} list={list} />
-      <ItemList list={list} handleDelete={handleDelete} />
+      <ItemList
+        list={list}
+        handleDelete={handleDelete}
+        // isChecked={isChecked}
+        handleCheck={handleCheck}
+      />
     </section>
   );
 };

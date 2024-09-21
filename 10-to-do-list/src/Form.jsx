@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-const Form = ({ list, addList }) => {
+const Form = ({ addList }) => {
   const [item, setItem] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,6 +9,7 @@ const Form = ({ list, addList }) => {
       return;
     }
     addList(item);
+    setItem('');
   };
 
   return (
@@ -18,6 +19,7 @@ const Form = ({ list, addList }) => {
         <input
           type='text'
           className='form-input'
+          value={item}
           onChange={(e) => setItem(e.target.value)}
         />
         <button type='submit' className='btn'>

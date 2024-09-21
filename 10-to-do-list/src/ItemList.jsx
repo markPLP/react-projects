@@ -1,16 +1,20 @@
 import SignleList from './SignleList';
-import { nanoid } from 'nanoid';
+const ItemList = ({ list, handleDelete, handleCheck }) => {
+  //const [isChecked, setIsChecked] = useState(false);
 
-const ItemList = ({ list, handleDelete }) => {
   return (
     <div className='items'>
       {list.map((listItem) => {
-        const listId = nanoid();
+        //const listId = nanoid();
+        console.log(listItem.id);
+
         return (
           <SignleList
-            key={listId}
+            key={listItem.id}
             listItem={listItem}
             handleDelete={handleDelete}
+            handleCheck={handleCheck}
+            // isChecked={isChecked}
           />
         );
       })}

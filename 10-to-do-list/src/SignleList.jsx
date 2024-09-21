@@ -1,33 +1,27 @@
 import { useState } from 'react';
 
-const SignleList = ({ listItem, handleDelete }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-  };
-
+const SignleList = ({ listItem, handleDelete, handleCheck }) => {
   return (
     <div className='single-item'>
       <input
         type='checkbox'
-        checked={isChecked}
-        onChange={() => handleCheck()}
+        checked={listItem.completed}
+        onChange={() => handleCheck(listItem.id)}
       />
       <p
-        style={{
-          ...(isChecked && {
-            textDecoration: 'line-through',
-            textTransform: 'capitalize',
-          }),
-        }}
+      // style={{
+      //   ...(isChecked && {
+      //     textDecoration: 'line-through',
+      //     textTransform: 'capitalize',
+      //   }),
+      // }}
       >
-        {listItem}
+        {listItem.name}
       </p>
       <button
         className='btn btn-remove'
         type='button'
-        onClick={() => handleDelete(listItem)}
+        onClick={() => handleDelete(listItem.id)}
       >
         delete
       </button>
