@@ -3,8 +3,17 @@ import Form from './Form';
 import ItemList from './ItemList';
 import { ToastContainer, toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
+
+const setLocalStorage = (items) => {
+  localStorage.setItem('list', JSON.stringify(items));
+};
+
+// get local storage, if non set to empty array[]
+const defaultList = JSON.parse(localStorage.getItem('list') || '[]');
+
 const App = () => {
-  const [list, setList] = useState([]);
+  // get local storage
+  const [list, setList] = useState(defaultList);
 
   const addList = (item) => {
     const newList = {
@@ -14,6 +23,7 @@ const App = () => {
     };
     const newLists = [...list, newList];
     setList(newLists);
+    setLocalStorage(newLists);
     toast.success('Success, New Item Added.');
   };
 
@@ -21,6 +31,7 @@ const App = () => {
     const deletedItem = list.filter((itemDeleted) => itemDeleted.id !== id);
     console.log(deletedItem);
     setList(deletedItem);
+    setLocalStorage(deletedItem);
     toast.success('Item Deleted.');
   };
 
@@ -34,6 +45,7 @@ const App = () => {
       }
     });
     setList(newItems);
+    setLocalStorage(newItems);
   };
 
   return (

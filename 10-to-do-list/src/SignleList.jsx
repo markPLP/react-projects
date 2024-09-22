@@ -9,12 +9,10 @@ const SignleList = ({ listItem, handleDelete, handleCheck }) => {
         onChange={() => handleCheck(listItem.id)}
       />
       <p
-      // style={{
-      //   ...(isChecked && {
-      //     textDecoration: 'line-through',
-      //     textTransform: 'capitalize',
-      //   }),
-      // }}
+        style={{
+          textDecoration: listItem.completed && 'line-through',
+          textTransform: 'capitalize',
+        }}
       >
         {listItem.name}
       </p>
