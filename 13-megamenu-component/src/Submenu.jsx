@@ -19,11 +19,6 @@ const Submenu = () => {
       }, 100);
       return;
     }
-
-    // alternative
-    // setTimeout(() => {
-    //   setPageId(null);
-    // }, 200);
   };
 
   // return values using optional chaining

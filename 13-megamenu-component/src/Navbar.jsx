@@ -1,8 +1,9 @@
 import { useGlobalContext } from './Context';
 import { FaBars } from 'react-icons/fa';
 import NavLinks from './NavLinks';
+import BasicSubMenu from './BasicSubMenu';
 const Navbar = () => {
-  const { openSidebar, setPageId } = useGlobalContext();
+  const { openSidebar, setPageId, normalMenu } = useGlobalContext();
 
   const handleSubmit = (e) => {
     if (!e.target.classList.contains('nav-link')) {
@@ -17,7 +18,7 @@ const Navbar = () => {
         <button className='toggle-btn' onClick={openSidebar}>
           <FaBars />
         </button>
-        <NavLinks />
+        {normalMenu ? <BasicSubMenu /> : <NavLinks />}
       </div>
     </nav>
   );

@@ -419,6 +419,42 @@ Nav Links
 .nav-links {
   display: none;
 }
+
+.nav-links-basic {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  & .nav-link {
+    justify-content: center;
+    align-self: stretch;
+    place-content: center;
+
+    &:hover .nav-links-basic__sublinks {
+      display: grid;
+      row-gap: 0.5rem;
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--borderRadius);
+    }
+  }
+}
+
+.nav-links-basic__sublinks {
+  display: none;
+  position: absolute;
+  top: calc(100%);
+
+  & li a {
+    color: var(--grey-900);
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .nav-links {
     display: flex;
