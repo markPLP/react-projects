@@ -12,7 +12,7 @@ const reducer = (state, action) => {
     return { ...state, cart: new Map() };
   }
   if (action.type === REMOVE) {
-    // creating new copy {} or []
+    // creating new copy {} or [] or map
     // and mutate state from here - delete,add etc
     // NOTE: don't directly mutate on current state
     const newCart = new Map(state.cart);
@@ -27,6 +27,7 @@ const reducer = (state, action) => {
     // spread the ...item then update the amount
     const newItem = { ...item, amount: item.amount + 1 };
     // use set() and add to newCart
+    // NOTE: set the KEY(id) and VALUE(item)
     newCart.set(itemId, newItem);
 
     return { ...state, cart: newCart };
@@ -47,6 +48,7 @@ const reducer = (state, action) => {
     // spread the ...item then update the amount
     const newItem = { ...item, amount: item.amount - 1 };
     // use set() and add to newCart
+    // NOTE: set the KEY(id) and VALUE(item)
     newCart.set(itemId, newItem);
     return { ...state, cart: newCart };
   }
@@ -58,6 +60,7 @@ const reducer = (state, action) => {
       action.payload.cart.map((item) => [item.id, item])
     );
     // cart: new Map(cartItems.map((item) => [item.id, item])),
+    // set loading to false here after successful fetch
     return { ...state, loading: false, cart: newState };
   }
   //return state;

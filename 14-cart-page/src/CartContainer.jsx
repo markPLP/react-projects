@@ -5,6 +5,7 @@ const CartContainer = () => {
   const { cart, clearCart, totalCost } = useGlobalContext();
 
   // convert cart(new map()) to array using Array.from
+  // to iterate over / to populate JSX
   const cartArray = Array.from(cart.entries());
 
   if (cartArray.length === 0) {
