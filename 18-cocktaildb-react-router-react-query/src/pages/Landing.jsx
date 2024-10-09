@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 import CocktailList from '../components/CocktailList';
 import SearchForm from '../components/SearchForm';
-
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const cocktailsUrl =
@@ -15,6 +15,7 @@ const searchCocktailsQuery = (searchTerm) => {
     queryKey: ['search', searchTerm || 'all'],
     queryFn: async () => {
       const response = await axios.get(`${cocktailsUrl}${searchTerm}`);
+
       return response.data.drinks;
     },
   };
@@ -31,7 +32,8 @@ export const loader =
     //get new URL on form submit
     const url = new URL(request.url);
     // use the url.searchParams.get('search') as a searchTerm
-    const searchTerm = url.searchParams.get('search') || '';
+    const searchTerm = url.searchParams.get('search') || 'all';
+
     // ensureQueryData checks data in cache
     // if its there then use it
     // if not fetch again

@@ -8,14 +8,39 @@ const cocktailsUrl =
 
 // loader func here is found on element: <Landing /> - createBrowserRouter
 export const loader = async ({ request }) => {
-  //get new URL on form submit
+  console.log(request, 'req');
+
+  //get new URL onload/form submit
   const url = new URL(request.url);
+  console.log(url);
+
   // use the url.searchParams.get('search') as a searchTerm
-  const searchTerm = url.searchParams.get('search') || '';
+  const searchTerm = url.searchParams.get('search') || 'all';
   const response = await axios.get(`${cocktailsUrl}${searchTerm}`);
+  console.log(response, 'respo');
+
+  const drinks = response.data.drinks || [];
   // console.log(response);
   // return an object with drinks property and destructure
-  return { drinks: response.data.drinks, searchTerm };
+  return { drinks, searchTerm };
+
+  // // Get the search term from the URL query parameters
+  // const url = new URL(request.url);
+  // const searchTerm = url.searchParams.get('search') || 'margarita'; // Default to an empty string if not found
+
+  // try {
+  //   // Fetch data using axios
+  //   const response = await axios.get(`${cocktailsUrl}${searchTerm}`);
+  //   const drinks = response.data.drinks || []; // Fallback to an empty array if no drinks are found
+
+  //   console.log('Fetching cocktails for:', searchTerm);
+  //   console.log('API response:', response.data);
+  //   // Return the searchTerm and drinks to the component
+  //   return { searchTerm, drinks };
+  // } catch (error) {
+  //   console.error('Error fetching data from API:', error);
+  //   return { searchTerm, drinks: [] }; // Return empty array if there is an error
+  // }
 };
 
 const Landing = () => {
@@ -23,7 +48,7 @@ const Landing = () => {
   // IMPORTANT: import hook userLoaderData to access the data loaded by a route's loader function
   const { drinks, searchTerm } = useLoaderData();
 
-  if (!drinks) {
+  if (!drinks || drinks.length === 0) {
     return <h2>No drinks found</h2>;
   }
 

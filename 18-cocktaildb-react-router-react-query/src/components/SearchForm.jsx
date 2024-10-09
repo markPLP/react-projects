@@ -1,9 +1,19 @@
+import { useState, useEffect } from 'react';
 import Wrapper from '../assets/wrappers/SearchForm';
 import { Form, useNavigation } from 'react-router-dom';
+import { useRef } from 'react';
 
 const SearchForm = ({ searchTerm }) => {
+  const inputRef = useRef(null);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
+
+  useEffect(() => {
+    if (searchTerm === 'all' && inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }, [searchTerm]);
+
   return (
     <Wrapper>
       <Form className='form'>
@@ -12,7 +22,7 @@ const SearchForm = ({ searchTerm }) => {
           name='search'
           id='search'
           defaultValue={searchTerm}
-          // onChange={(e) => setValue(e.target.value)}
+          ref={inputRef}
           className='form-input'
         />
         <button type='submit' className='btn' disabled={isSubmitting}>
