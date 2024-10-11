@@ -36,6 +36,7 @@ export const loader =
   };
 
 const Cocktail = () => {
+  // IMPORTANT: import hook userLoaderData to access the data loaded by a route's loader function
   const { id } = useLoaderData();
   const { data } = useQuery(singleCocktailQuery(id));
   //console.log(data);
@@ -70,42 +71,42 @@ const Cocktail = () => {
   return (
     <Wrapper>
       <header>
-        <Link to={'/'} className='btn'>
+        <Link to={'/'} className="btn">
           back home
         </Link>
         <h3>{name}</h3>
       </header>
-      <div className='drink'>
-        <img src={image} alt={name} className='img' />
-        <div className='drink-info'>
+      <div className="drink">
+        <img src={image} alt={name} className="img" />
+        <div className="drink-info">
           <p>
-            <span className='drink-data'>Name:</span>
+            <span className="drink-data">Name:</span>
             {name}
           </p>
           <p>
-            <span className='drink-data'>category:</span>
+            <span className="drink-data">category:</span>
             {category}
           </p>
           <p>
-            <span className='drink-data'>info:</span>
+            <span className="drink-data">info:</span>
             {info}
           </p>
           <p>
-            <span className='drink-data'>glass:</span>
+            <span className="drink-data">glass:</span>
             {glass}
           </p>
           <p>
-            <span className='drink-data'>Ingredients:</span>
+            <span className="drink-data">Ingredients:</span>
             {ingredients.map((ing, index) => {
               return (
-                <span className='ing' key={index}>
+                <span className="ing" key={index}>
                   {ing} {index < ingredients.length - 1 ? ',' : ''}
                 </span>
               );
             })}
           </p>
           <p>
-            <span className='drink-data'>Instructions:</span>
+            <span className="drink-data">Instructions:</span>
             {instructions}
           </p>
         </div>
