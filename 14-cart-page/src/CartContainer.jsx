@@ -4,9 +4,12 @@ import cartItems from './data';
 const CartContainer = () => {
   const { cart, clearCart, totalCost } = useGlobalContext();
 
+  console.log(cart, 'cart');
+
   // convert cart(new map()) to array using Array.from
   // to iterate over / to populate JSX
   const cartArray = Array.from(cart.entries());
+  console.log(cartArray, 'array');
 
   if (cartArray.length === 0) {
     return (
