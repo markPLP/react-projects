@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import OverviewPage from './pages/OverviewPage';
-import { ProductsPage, UsersPage } from './pages';
+import { ProductsPage, SalesPage, UsersPage } from './pages';
 import Sidebar from './components/common/Sidebar';
 
 const App = () => {
@@ -16,8 +16,8 @@ const App = () => {
         <Route path="/" element={<OverviewPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/users" element={<UsersPage />} />
-        {/* <Route path="/sales" element={<SalesPage />} />
-        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/sales" element={<SalesPage />} />
+        {/*  <Route path="/orders" element={<OrdersPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/settings" element={<SettingsPage />} /> */}
       </Routes>
