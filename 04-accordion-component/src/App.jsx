@@ -9,7 +9,6 @@ const App = () => {
   const handleClick = (id) => {
     const newActiveID = id === activeID ? null : id;
     setActiveID(newActiveID);
-    console.log(newActiveID);
   };
 
   return (

@@ -12,6 +12,8 @@ function App() {
   const fetchJobs = async () => {
     const response = await fetch(url);
     const newJobs = await response.json();
+    console.log(newJobs, 'newJobs');
+
     setJobs(newJobs);
     setLoading(false);
   };
@@ -20,13 +22,13 @@ function App() {
   }, []);
   if (loading) {
     return (
-      <section className='jobs-center'>
-        <div className='loading'></div>
+      <section className="jobs-center">
+        <div className="loading"></div>
       </section>
     );
   }
   return (
-    <section className='jobs-center'>
+    <section className="jobs-center">
       {/* btn container */}
       <BtnContainer
         jobs={jobs}
