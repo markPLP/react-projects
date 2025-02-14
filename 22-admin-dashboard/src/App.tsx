@@ -1,6 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import OverviewPage from './pages/OverviewPage';
-import { OrdersPage, ProductsPage, SalesPage, UsersPage } from './pages';
+import {
+  AnalyticsPage,
+  OrdersPage,
+  ProductsPage,
+  SalesPage,
+  SettingsPage,
+  UsersPage,
+} from './pages';
 import Sidebar from './components/common/Sidebar';
 
 const App = () => {
@@ -18,8 +25,8 @@ const App = () => {
         <Route path="/users" element={<UsersPage />} />
         <Route path="/sales" element={<SalesPage />} />
         <Route path="/orders" element={<OrdersPage />} />
-        {/*   <Route path="/analytics" element={<AnalyticsPage />} />
-        <Route path="/settings" element={<SettingsPage />} /> */}
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
       </Routes>
     </div>
   );
